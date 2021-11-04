@@ -7,7 +7,7 @@ import numba as nb
 
 evskey = 0xFF
 endkey = 0xF0
-evdcard0 = 0x19
+evdcard0 = 0x5
 
 
 header_type = np.dtype([
@@ -32,6 +32,7 @@ def read_event(data, idx, iev):
 
     v0, lro, cro = read_event_header( data.read(header_size) )
 
+
     if(cro < 0):
         return -1 #v0, [], []
 
@@ -41,20 +42,10 @@ def read_event(data, idx, iev):
 
 
     shape_and_store( read_evt_uint12_nb( data.read(cro)) , 0)
-
-    data.read(1) #BRUNO BYTE (?)
-        
-    v1, lro, cro = read_event_header( data.read(header_size))
-
-    if(cro < 0):
-        return -1 #v1, [], []
-
-    if(lro > 0):
-        data.read(lro, 1)
-
-    shape_and_store( read_evt_uint12_nb( data.read(cro)) , 1)
-
-    check_and_merge_events(v0, v1, iev)
+    
+    v0.evt_nb_loc = iev
+    dc.evt_list.append(v0)
+    
     return 0
     
 def read_event_header(data):
@@ -148,7 +139,6 @@ def check_and_merge_events(v0, v1, iev):
         print("Event headers are different ... ")
         v0.evt_nb_loc = iev
         dc.evt_list.append(v0)
-
         #return v0
 
 
