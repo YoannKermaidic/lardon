@@ -1,4 +1,4 @@
-name: lardenv
+name: lardenv-cb
 channels:
   - conda-forge
 

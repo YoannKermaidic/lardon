@@ -1,9 +1,10 @@
-data_path = "/eos/experiment/neutplatform/protodune/rawdata/np02/rawdata/"
+#data_path = "/eos/experiment/neutplatform/protodune/rawdata/np02/rawdata/"
+data_path = "/eos/home-y/ykermaid/coldbox/testdata/"
 calib_path = "/afs/cern.ch/user/n/np02onlp/public/calib/pedestals/"
 
 """ User's specific """
-store_path = "./reco"
-plot_path  = "./ED"
+store_path = "/eos/home-y/ykermaid/np02-dp/lardon/output"
+plot_path  = "/eos/home-y/ykermaid/np02-dp/lardon/plots"
 default_reco = "default_reco.yaml"
 
 experiment="./np02"
